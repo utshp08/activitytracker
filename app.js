@@ -29,6 +29,8 @@ mongoose.connect(db.mongoURI,
         autoReconnect: true,
         // useNewUrlParser: true,
         dbName: "activitytracker",
+        username: "utspantonia",
+        password: "secret123"
     }
 ).catch(err => {
     console.log(err);
