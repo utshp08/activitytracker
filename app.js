@@ -23,7 +23,6 @@ app.listen(port, () => {
 //Setting up mongoose database
 mongoose.Promise = global.Promise;
 mongoose.connect(db.mongoURI, {
-    useCreateIndex: true,
     useNewUrlParser: true
 }).then(() => {
     console.log('Database connection established.');
@@ -88,11 +87,6 @@ handlebars.registerHelper('select', () => {
 handlebars.registerHelper('dateFormat', require('handlebars-dateformat'));
 
 
-handlebars.registerHelper('clear', (item) => {
-    item = '';
-    console.log(item);
-    return item;
-});
 
 
 //Defining Routes
