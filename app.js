@@ -13,7 +13,7 @@ const db = require('./config/database');
 // Intiating server
 const app = express();
 
-const port = process.env.port || 5000;
+const port = process.env.PORT || 5000;
 app.listen(port, () => {
     console.log('Server started at localhost:5000');
 });
