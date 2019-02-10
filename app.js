@@ -22,7 +22,7 @@ app.listen(port, () => {
 
 //Setting up mongoose database
 mongoose.Promise = global.Promise;
-conn = mongoose.connect(db.mongoURI, {
+conn = mongoose.connect(db.mongoURI, {dbName: "activitytracker"}, {
     useNewUrlParser: true
 }).then(() => {
     console.log('Database connection established.');
