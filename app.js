@@ -21,17 +21,16 @@ app.listen(port, () => {
 //Load database
 
 //Setting up mongoose database
+mongoose.Promise = global.Promise;
 mongoose.connect(db.mongoURI,
     {
         reconnectTries: 100,
         reconnectInterval: 500,
         autoReconnect: true,
-        // useNewUrlParser: true,
-        dbName: "activitytracker"
+        useNewUrlParser: true,
+        dbName: "activitytracker",
     }
-).catch(err => {
-    console.log(err);
-});
+);
 
 // Load Routes
 const tasks = require('./routes/tasks');
