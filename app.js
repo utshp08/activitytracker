@@ -22,15 +22,20 @@ app.listen(port, () => {
 
 //Setting up mongoose database
 mongoose.Promise = global.Promise;
-mongoose.connect(db.mongoURI, {
-    useNewUrlParser: true
-});
-conn = mongoose.connection;
-conn.then(() => {
-    console.log('Database connection established.');
-}).catch(err => {
-    console.log(err);
-});
+conn = mongoose.connect(db.mongoURI,
+    {
+        useNewUrlParser: true,
+        server: {
+            socketOptions: {
+                keepAlive: 1
+            },
+            ssl: true
+        }
+    }).then(() => {
+        console.log('Database connection established.');
+    }).catch(err => {
+        console.log(err);
+    });
 
 // Load Routes
 const tasks = require('./routes/tasks');
