@@ -27,7 +27,7 @@ mongoose.connect(db.mongoURI,
         reconnectTries: 100,
         reconnectInterval: 500,
         autoReconnect: true,
-        useNewUrlParser: true,
+        // useNewUrlParser: true,
         dbName: "activitytracker",
     }
 ).catch(err => {
