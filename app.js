@@ -24,7 +24,9 @@ app.listen(port, () => {
 mongoose.Promise = global.Promise;
 mongoose.connect(db.mongoURI, {
     useNewUrlParser: true
-}).then(() => {
+});
+conn = mongoose.connection;
+conn.then(() => {
     console.log('Database connection established.');
 }).catch(err => {
     console.log(err);
