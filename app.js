@@ -21,16 +21,13 @@ app.listen(port, () => {
 //Load database
 
 //Setting up mongoose database
-mongoose.Promise = global.Promise;
 mongoose.connect(db.mongoURI,
     {
         reconnectTries: 100,
         reconnectInterval: 500,
         autoReconnect: true,
         // useNewUrlParser: true,
-        dbName: "activitytracker",
-        username: "utspantonia",
-        password: "secret123"
+        dbName: "activitytracker"
     }
 ).catch(err => {
     console.log(err);
