@@ -22,7 +22,7 @@ app.listen(port, () => {
 
 //Setting up mongoose database
 mongoose.Promise = global.Promise;
-mongoose.connect(db.mongoURI, {
+mongoose.connect("mongodb+srv://utspantonia:secret123@cluster0-oguaj.mongodb.net/activitytracker?retryWrites=true&ssl=true", {
     useNewUrlParser: true
 }).then(() => {
     console.log('Database connection established.');
