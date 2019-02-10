@@ -22,10 +22,15 @@ app.listen(port, () => {
 
 //Setting up mongoose database
 mongoose.Promise = global.Promise;
-mongoose.connect(db.mongoURI, {dbName: "activitytracker", useNewUrlParser: true, useMongoClient: true})
-.then(() => {
-    console.log('Database connection established.');
-}).catch(err => {
+mongoose.connect(db.mongoURI,
+    {
+        reconnectTries: 100,
+        reconnectInterval: 500,
+        autoReconnect: true,
+        useNewUrlParser: true,
+        dbName: "activitytracker",
+    }
+).catch(err => {
     console.log(err);
 });
 
