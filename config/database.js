@@ -1,6 +1,6 @@
 if (process.env.NODE_ENV === "production") {
     module.exports = {
-        mongoURI : "mongodb+srv://utspantonia:secret123@cluster0-oguaj.mongodb.net/activitytracker?retryWrites=true&ssl=true"
+        mongoURI : "mongodb+srv://utspantonia:secret123@cluster0-oguaj.mongodb.net/activitytracker?retryWrites=true&ssl=false"
     }
 } else {
     module.exports = {
