@@ -1,0 +1,111 @@
+<div class="card">
+    <div class="card-header">
+        <div class="d-inline-block">
+            <form action="/tasks" method="POST">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">Number per row:</div>
+                    </div>
+                    
+                    <select class="custom-select" name="perPage" onchange="{{limit}}">
+                       {{#each selectItems}}
+                            {{options}}
+                       {{/each}}
+                    </select>
+                </div>
+            </form>
+        </div>
+        {{#unless active}}
+        <form action="/tasks" class="d-inline-block" method="POST">
+            <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">New Task</div>
+                </div>
+                <select class="custom-select" name="preferredTask">
+                    {{#each preferredTasks}}
+                    <option value="{{this._id}}">{{this.name}}</option>
+                    {{else}}
+
+                    {{/each}}
+                </select>
+                <div class="input-group-append">
+                    <button class="btn btn-success"><i class="fa fa-plus"></i> Add Task</button>
+                </div>
+            </div>
+        </form>
+        {{/unless}}
+        <div class="d-inline-block">
+            <a href="/tasks/preferred-tasks" class="btn btn-dark" style="color: #fff;"><i class="fa fa-plus"></i> New
+                Preferred Tasks</a>
+        </div>
+    </div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Task</th>
+                <th scope="col">Start</th>
+                <th scope="col">End</th>
+                <th scope="col">Duration</th>
+                <th scope="col">Remarks</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+</div>
+
+<tbody>
+    {{#each tasks}}
+    <tr>
+        <th scope="row">{{this.name}}</th>
+        <td>{{dateFormat this.start 'MMM DD YYYY hh:mm:ss A'}}</td>
+        <td>
+            {{#unless this.end}}
+            <form action="/tasks/{{this._id}}?_method=PUT" method="POST">
+                <input type="hidden" name="_method" value="PUT">
+                <button class="btn btn-success"><i class="fa fa-check"></i> End Task</button>
+            </form>
+            {{else}}
+            {{dateFormat this.end 'MMM DD YYYY hh:mm:ss A'}}
+            {{/unless}}
+        </td>
+        <td>
+            {{#if this.duration}}
+            {{this.duration}}
+            {{else}}
+            N/A
+            {{/if}}
+        </td>
+        <td>
+            {{#if this.remarks}}
+            <a href="/tasks/add-remarks/{{this._id}}" class="btn btn-primary" >...</a>
+            {{this.remarks}} 
+            {{!-- <a href="/tasks/add-remarks/{{this._id}}" class="btn btn-success mr-1" >View</button> --}}
+            
+            {{else}}
+               <a href="/tasks/add-remarks/{{this._id}}" class="btn btn-secondary" >Add remarks</button>
+            
+            {{/if}}
+        </td>
+        <td>
+            <form action="/tasks/{{this._id}}?_method=DELETE" method="POST">
+                <input type="hidden" name="_method" value="DELETE">
+                <button class="btn btn-danger"><i class="fa fa-trash"></i></button>
+            </form>
+        </td>
+    </tr>
+    {{else}}
+    <tr>
+        <td>No data found</td>
+    </tr>
+    {{/each}}
+</tbody>
+</table>
+</div>
+<nav aria-label="Page navigation example">
+    <ul class="pagination">
+        <li class="page-item"><a class="page-link" href="/tasks/1">1</a></li>
+        <li class="page-item"><a class="page-link" href="/tasks/2">2</a></li>
+        <li class="page-item"><a class="page-link" href="/tasks/3">3</a></li>
+        <li class="page-item"><a class="page-link" href="/tasks/4">4</a></li>
+        <li class="page-item"><a class="page-link" href="/tasks/5">5</a></li>
+    </ul>
+</nav>

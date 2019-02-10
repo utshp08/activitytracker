@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+    
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+
+    
+<script>
+ $(".modal").on("shown.bs.modal", function()  { // any time a modal is shown
+    var urlReplace = "#" + $(this).attr('id'); // make the hash the id of the modal shown
+    history.pushState(null, null, urlReplace); // push state that hash into the url
+  });
+
+  // If a pushstate has previously happened and the back button is clicked, hide any modals.
+  $(window).on('popstate', function() { 
+    $(".modal").modal('hide');
+  });
+</script>
+    <title>Document</title>
+</head>
+
+<body>
+    {{> _navbar}}
+    <div class="container pt-3">
+        {{> _msg}}
+        {{{body}}}
+    </div>
+</body>
+</html>

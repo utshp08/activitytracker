@@ -1,0 +1,19 @@
+<div class="card">
+    <div class="card-header">
+        Remarks
+    </div>
+    <div class="card-body">
+        <form action="/tasks/add-remarks/{{task_id}}?_method=PUT" method="POST">
+            <input type="hidden" name="_method" value="PUT">
+             <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">Input your remarks here:</div>
+                </div>
+                <input type="text" class="form-control" name="remarks" required>
+                <div class="input-group-append">
+                    <button class="btn btn-success"><i class="fa fa-plus"></i> Add Remarks</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

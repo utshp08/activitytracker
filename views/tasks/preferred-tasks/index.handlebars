@@ -1,0 +1,49 @@
+<div class="card">
+    <div class="card-header">
+        <form action="/tasks/preferred-tasks" class="d-inline-block  mr-auto" method="POST">
+            <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">New Preferred Task</div>
+                </div>
+                <input type="text" class="form-control" name="task_name" required>
+                <div class="input-group-append">
+                    <button class="btn btn-success"><i class="fa fa-plus"></i> Add To Preferred Task</button>
+                </div>
+            </div>
+        </form>
+         <a href="/tasks" class="btn btn-dark ml-auto"><i class="fa fa-arrow-left"></i> View Tasks</a>
+    </div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Task Name</th>
+                <th scope="col">Status</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each preferredTask}}
+            <tr>
+                <th scope="row"><p class="mt-2">{{this.name}}</p></th>
+                <td>
+                    {{#if this.status}}
+                        <input type="checkbox" checked data-toggle="toggle">
+                    {{else}}
+                        <input type="checkbox" data-toggle="toggle">
+                    {{/if}}
+                </td>
+                <td>
+                    <form action="/tasks/preferred-tasks/{{this._id}}?_method=DELETE" method="POST">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <button class="btn btn-danger"><i class="fa fa-trash"></i> Delete</button>
+                    </form>
+                </td>
+            </tr>
+            {{else}}
+            <tr>
+                <td>No data found</td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>
