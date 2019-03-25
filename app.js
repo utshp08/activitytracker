@@ -30,7 +30,9 @@ mongoose.connect(db.mongoURI,
         useNewUrlParser: true,
         dbName: "activitytracker",
     }
-);
+).catch(err => {
+    console.log(err);
+});
 
 // Load Routes
 const tasks = require('./routes/tasks');
@@ -93,7 +95,7 @@ handlebars.registerHelper('dateFormat', require('handlebars-dateformat'));
 
 //Defining Routes
 app.get('/', (req, res) => {
-    res.redirect('/tasks');
+    res.redirect('/user/login');
 });
 
 // call tasks routes whenever there is a /tasks request
