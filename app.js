@@ -24,11 +24,7 @@ app.listen(port, () => {
 mongoose.Promise = global.Promise;
 mongoose.connect(db.mongoURI,
     {
-        reconnectTries: 100,
-        reconnectInterval: 500,
-        autoReconnect: true,
         useNewUrlParser: true,
-        dbName: "activitytracker",
     }
 ).catch(err => {
     console.log(err);
